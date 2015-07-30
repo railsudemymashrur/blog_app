@@ -9,8 +9,10 @@
     <%= @article.body %>
   </div>
   
-  <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary btn-lg btn-space" %>
-  <%= link_to "Delete Article", article_path(@article), method: :delete,
-            data: { confirm: "Are you sure you want to delete the article?"},
-            class: "btn btn-danger btn-lg btn-space" %>
+  <% if user_signed_in? && current_user == @article.user %>
+    <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary btn-lg btn-space" %>
+    <%= link_to "Delete Article", article_path(@article), method: :delete,
+              data: { confirm: "Are you sure you want to delete the article?"},
+              class: "btn btn-danger btn-lg btn-space" %>
+  <% end %>
 </article>
